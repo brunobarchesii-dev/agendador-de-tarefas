@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 //name é o nome que quero dar a minha api, e url é a url dela, que nesse caso coloquei para apontar pra uma variavel em /.properties
 public interface UsuarioClient {
 
-    @GetMapping
+    @GetMapping("/usuario")
     UsuarioDTO buscarUsuarioPorEmail(@RequestParam("email") String email,
                                      @RequestHeader("Authorization") String token);
 
