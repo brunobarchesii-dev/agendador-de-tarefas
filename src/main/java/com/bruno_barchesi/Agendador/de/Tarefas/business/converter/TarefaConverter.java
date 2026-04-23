@@ -4,6 +4,8 @@ import com.bruno_barchesi.Agendador.de.Tarefas.business.dto.TarefaDTO;
 import com.bruno_barchesi.Agendador.de.Tarefas.infrastructure.entity.TarefaEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class TarefaConverter {
 
@@ -34,6 +36,15 @@ public class TarefaConverter {
                 .emailUsuario(tarefa.getEmailUsuario())
                 .build();
     }
+
+
+
+
+    //LISTA DE TAREFAS ENTITY PARA LISTA TAREFAS DTO:
+    public List<TarefaDTO> paraListaTarefaDTO(List<TarefaEntity> tarefaEntities){
+        return tarefaEntities.stream().map(this::paraTarefaDTO).toList();
+    }
+
 
 
 }
