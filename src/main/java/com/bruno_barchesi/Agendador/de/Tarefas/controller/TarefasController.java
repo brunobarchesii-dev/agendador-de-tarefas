@@ -2,6 +2,8 @@ package com.bruno_barchesi.Agendador.de.Tarefas.controller;
 
 import com.bruno_barchesi.Agendador.de.Tarefas.business.TarefaService;
 import com.bruno_barchesi.Agendador.de.Tarefas.business.dto.TarefaDTO;
+import com.bruno_barchesi.Agendador.de.Tarefas.infrastructure.enums.StatusNotificacaoEnum;
+import com.bruno_barchesi.Agendador.de.Tarefas.infrastructure.exceptions.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +45,39 @@ public class TarefasController {
     }
 
 
+
+
+    //deletar por id:
+    @DeleteMapping
+    public ResponseEntity<Void> deletarPorId(@RequestParam("id") String id){
+        try {
+            tarefaService.deletarPorId(id);
+            return ResponseEntity.ok().build();
+        }
+        catch (ResourceNotFoundException e){
+            throw new ResourceNotFoundException("ID nao encontrado: " + id );
+        }
+    }
+
+
+
+
+    //ATUALIZAR STATUS NOTIFICACAO
+    @PatchMapping
+    public ResponseEntity<TarefaDTO> atualizarStatusNotificacao(@RequestParam("status")StatusNotificacaoEnum status,
+                                                                @RequestParam("id") String id){
+        return ResponseEntity.ok(tarefaService.alterarStatusTarefa(status, id));
+    }
+
+
+
+
+    //ATUALIZAR TAREFA COMPLETAMENTE:
+    @PutMapping
+    public ResponseEntity<TarefaDTO> atualizarTarefa(@RequestBody TarefaDTO tarefaDTO,
+                                                     @RequestParam("id") String id){
+        return ResponseEntity.ok(tarefaService.atualizarTarefa(id, tarefaDTO));
+    }
 
 
 

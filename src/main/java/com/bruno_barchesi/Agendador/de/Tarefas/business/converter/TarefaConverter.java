@@ -47,4 +47,24 @@ public class TarefaConverter {
 
 
 
+
+    //UPDATE DE TAREFA:
+    public TarefaDTO atualizarTarefa(TarefaEntity tarefaEntity, TarefaDTO tarefaDTO){
+        return TarefaDTO.builder()
+                .nomeTarefa(tarefaDTO.getNomeTarefa() != null ? tarefaDTO.getNomeTarefa() : tarefaEntity.getNomeTarefa())
+                .id(tarefaEntity.getId())
+                .statusNotificacao(tarefaDTO.getStatusNotificacao() != null ? tarefaDTO.getStatusNotificacao() : tarefaEntity.getStatusNotificacao())
+                .descricao(tarefaDTO.getDescricao() != null ? tarefaDTO.getDescricao() : tarefaEntity.getDescricao())
+                .emailUsuario(tarefaDTO.getEmailUsuario() != null ? tarefaDTO.getEmailUsuario() : tarefaEntity.getEmailUsuario())
+                .dataCriacao(tarefaDTO.getDataCriacao() != null ? tarefaDTO.getDataCriacao() : tarefaEntity.getDataCriacao())
+                .dataEvento(tarefaDTO.getDataEvento() != null ? tarefaDTO.getDataEvento() : tarefaEntity.getDataEvento())
+                .dataAlteracao(tarefaDTO.getDataAlteracao() != null ? tarefaDTO.getDataAlteracao() : tarefaEntity.getDataAlteracao())
+                .build();
+
+
+
+    }
+
+
+
 }
