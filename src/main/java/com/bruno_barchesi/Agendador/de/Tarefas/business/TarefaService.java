@@ -38,9 +38,9 @@ public class TarefaService{
 
 
 
-    //Encontrando todas as tarefas entre um determinado periodo:
+    //Encontrando todas as tarefas entre um determinado periodo (PARA USAR NO SCHEDULE DE NOTIFIACAO)
     public List<TarefaDTO> buscarTarefasAgendadasPorPeriodo(LocalDateTime dataInicial, LocalDateTime dataFinal){
-     return tarefaConverter.paraListaTarefaDTO(tarefasRepository.findByDataEventoBetween(dataInicial, dataFinal));
+     return tarefaConverter.paraListaTarefaDTO(tarefasRepository.findByDataEventoBetweenAndStatusNotificacaoEnum(dataInicial, dataFinal, StatusNotificacaoEnum.PENDENTE));
 
     }
 
