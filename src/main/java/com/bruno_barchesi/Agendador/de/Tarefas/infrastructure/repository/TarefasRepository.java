@@ -1,6 +1,7 @@
 package com.bruno_barchesi.Agendador.de.Tarefas.infrastructure.repository;
 
 import com.bruno_barchesi.Agendador.de.Tarefas.infrastructure.entity.TarefaEntity;
+import com.bruno_barchesi.Agendador.de.Tarefas.infrastructure.enums.StatusNotificacaoEnum;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +12,10 @@ import java.util.List;
 public interface TarefasRepository extends MongoRepository<TarefaEntity, String> {
 
     //Encontrando todas as tarefas entre um determinado periodo:
-    List<TarefaEntity> findByDataEventoBetween(LocalDateTime dataInicial, LocalDateTime dataFinal);
+    List<TarefaEntity> findByDataEventoBetweenAndStatusNotificacaoEnum(LocalDateTime dataInicial,
+                                                                       LocalDateTime dataFinal,
+                                                                       StatusNotificacaoEnum statusNotificacaoEnum);
+
 
 
     //Encontrando tarefas por email:
